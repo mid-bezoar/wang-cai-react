@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import Layout from '../components/Layout';
-import React from 'react';
+import styled from "styled-components";
+import Layout from "../components/Layout";
+import React from "react";
 
 const TagsSection = styled.section`
   background: #fff;
@@ -26,9 +26,50 @@ const TagsSection = styled.section`
   }
 `;
 
-const NotesSection = styled.section``;
+const NotesSection = styled.section`
+  background: #f5f5f5;
+  padding: 0 16px;
+  font-size: 14px;
+  > label {
+    display: flex;
+    align-items: center;
+    > span {
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+    > input {
+      display: block;
+      width: 100%;
+      height: 72px;
+      background: none;
+      border: none;
+    }
+  }
+`;
 
-const CategorySection = styled.section``;
+const CategorySection = styled.section`
+  font-size: 24px;
+  > ul {
+    display: flex;
+    background-color: #c4c4c4;
+    > li {
+      width: 50%;
+      text-align: center;
+      padding: 16px 0;
+      position: relative;
+      &.selected::after {
+        content: "";
+        display: block;
+        height: 3px;
+        background-color: #333;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+      }
+    }
+  }
+`;
 
 const NumberPadSection = styled.section``;
 
@@ -47,12 +88,12 @@ function Money() {
       <NotesSection>
         <label>
           <span>备注</span>
-          <input type='text' />
+          <input type='text' placeholder='备注' />
         </label>
       </NotesSection>
       <CategorySection>
         <ul>
-          <li>支出</li>
+          <li className='selected'>支出</li>
           <li>收入</li>
         </ul>
       </CategorySection>
