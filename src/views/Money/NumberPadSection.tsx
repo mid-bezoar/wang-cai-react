@@ -25,31 +25,38 @@ const NumberPadSection = styled.section`
         float: right;
       }
       &:nth-child(1) {
-        background-color: #f2f2f2;
+        background-color: #e7e7e7;
       }
       &:nth-child(2),
-      &:nth-child(5) {
-        background-color: #e0e0e0;
+      &:nth-child(6) {
+        background-color: #e3e2e2;
       }
       &:nth-child(3),
-      &:nth-child(6),
-      &:nth-child(9) {
-        background-color: #d3d3d3;
+      &:nth-child(7),
+      &:nth-child(11) {
+        background-color: #e0e0e0;
       }
       &:nth-child(4),
-      &:nth-child(7),
-      &:nth-child(10) {
+      &:nth-child(8),
+      &:nth-child(12),
+      &:nth-child(16) {
+        background-color: #d3d3d3;
+      }
+      &:nth-child(5),
+      &:nth-child(9),
+      &:nth-child(13),
+      &:nth-child(17) {
         background-color: #c1c1c1;
       }
-      &:nth-child(8),
-      &:nth-child(11),
-      &:nth-child(13) {
+      &:nth-child(10),
+      &:nth-child(14),
+      &:nth-child(18) {
         background-color: #b8b8b8;
       }
-      &:nth-child(12) {
+      &:nth-child(15) {
         background-color: #9a9a9a;
       }
-      &:nth-child(14) {
+      &:nth-child(19) {
         background-color: #a9a9a9;
       }
     }
