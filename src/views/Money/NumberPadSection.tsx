@@ -92,31 +92,38 @@ const NumberPadSection: React.FC = () => {
   const onCLickButtonWrapper = (e: React.MouseEvent) => {
     const text = (e.target as HTMLButtonElement).textContent;
     if (text === null) return;
-    switch (text) {
-      case "0":
-      case "1":
-      case "2":
-      case "3":
-      case "4":
-      case "5":
-      case "6":
-      case "7":
-      case "8":
-      case "9":
-      case ".":
-        if (output === "0") {
-          setOutput(text);
-        } else {
-          setOutput(output + text);
-        }
-        break;
-      case "删除":
-        break;
-      case "清空":
-        break;
-      default:
-        break;
+
+    const actions: { [key: string]: () => void } = {
+      "0": () => handleNumberClick(text),
+      "1": () => handleNumberClick(text),
+      "2": () => handleNumberClick(text),
+      "3": () => handleNumberClick(text),
+      "4": () => handleNumberClick(text),
+      "5": () => handleNumberClick(text),
+      "6": () => handleNumberClick(text),
+      "7": () => handleNumberClick(text),
+      "8": () => handleNumberClick(text),
+      "9": () => handleNumberClick(text),
+      ".": () => handleNumberClick(text),
+      删除: handleDelete,
+      清空: handleClear
+    };
+
+    if (text in actions) {
+      actions[text]();
     }
+  };
+
+  const handleNumberClick = (text: string) => {
+    setOutput((output) => (output === "0" ? text : output + text));
+  };
+
+  const handleDelete = () => {
+    setOutput(output.slice(0 - 1));
+  };
+
+  const handleClear = () => {
+    setOutput("0");
   };
   return (
     <Wrapper>
