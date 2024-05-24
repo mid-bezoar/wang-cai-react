@@ -35,7 +35,7 @@ const CategorySection: React.FunctionComponent = () => {
     <Wrapper>
       <ul>
         {categoryList.map((item) => (
-          <li className={active === item ? "selected" : ""} onClick={() => setActive(item)}>
+          <li key={item} className={active === item ? "selected" : ""} onClick={() => setActive(item)}>
             {categoryMap[item]}
           </li>
         ))}
