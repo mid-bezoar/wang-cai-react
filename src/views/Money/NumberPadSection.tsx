@@ -65,7 +65,16 @@ const Wrapper = styled.section`
 `;
 
 const NumberPadSection: React.FC = () => {
-  const [output, setOutput] = useState("0");
+  const [output, _setOutput] = useState("0");
+
+  const setOutput = (output: string) => {
+    if (output.length > 16) {
+      output = output.slice(0, 16);
+    } else if (output.length === 0) {
+      output = "0";
+    }
+    _setOutput(output);
+  };
 
   const buttons = [
     { number: 1, text: "1" },
@@ -104,7 +113,7 @@ const NumberPadSection: React.FC = () => {
       "7": () => handleNumberClick(text),
       "8": () => handleNumberClick(text),
       "9": () => handleNumberClick(text),
-      ".": () => handleNumberClick(text),
+      ".": handDotClick,
       删除: handleDelete,
       清空: handleClear
     };
@@ -115,15 +124,29 @@ const NumberPadSection: React.FC = () => {
   };
 
   const handleNumberClick = (text: string) => {
-    setOutput((output) => (output === "0" ? text : output + text));
+    if (output === "0") {
+      setOutput(text);
+    } else {
+      setOutput(output + text);
+    }
+  };
+
+  const handDotClick = () => {
+    if (output.indexOf(".") === -1) {
+      setOutput(output + ".");
+    }
   };
 
   const handleDelete = () => {
-    setOutput(output.slice(0 - 1));
+    if (output.length === 1) {
+      setOutput("");
+    } else {
+      setOutput(output.slice(0, -1));
+    }
   };
 
   const handleClear = () => {
-    setOutput("0");
+    setOutput("");
   };
   return (
     <Wrapper>
@@ -134,27 +157,6 @@ const NumberPadSection: React.FC = () => {
             {text}
           </button>
         ))}
-        {/* <button onClick={() => onClickNumber(1)}>1</button>
-        <button onClick={() => onClickNumber(2)}>2</button>
-        <button onClick={() => onClickNumber(3)}>3</button>
-        <button>+</button>
-        <button>删除</button>
-        <button onClick={() => onClickNumber(4)}>4</button>
-        <button onClick={() => onClickNumber(5)}>5</button>
-        <button onClick={() => onClickNumber(6)}>6</button>
-        <button>-</button>
-        <button>清空</button>
-        <button onClick={() => onClickNumber(7)}>7</button>
-        <button onClick={() => onClickNumber(8)}>8</button>
-        <button onClick={() => onClickNumber(9)}>9</button>
-        <button>X</button>
-        <button className='ok'>OK</button>
-        <button className='zero' onClick={() => onClickNumber(0)}>
-          0
-        </button>
-        <button className='dot'>.</button>
-        <button>%</button>
-        <button>/</button> */}
       </div>
     </Wrapper>
   );
